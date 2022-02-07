@@ -1,11 +1,11 @@
-package JPATest;
+package jpabook.jpashop;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-public class JPAMain {
+public class JpaMain {
 
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
@@ -19,16 +19,12 @@ public class JPAMain {
 
 
         try {
-            Member findMember = em.find(Member.class, 1L);
-            findMember.setName("HIHI");
-
-            // commit 꼭 필요
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
         } finally {
             em.close(); // 자원이 끝나면 닫아줘야 한다다
-       }
+        }
         // was 실행하면 EntityManagerFactory를 닫아줘야 풀링이 된다
         emf.close();
 
